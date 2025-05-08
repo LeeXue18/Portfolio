@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pipe</title>
+  <link rel="stylesheet" href="style-5.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar">
+        <ul>
+          <div class="back">
+            <li>Liyun Design Portfolio</li>
+          </div>
+            
+          <div class="project">
+            <li><a href="index.html">Main Page</a></li>
+            <li><a href="https://liyunxuee.com/">Creative David</a></li>
+            <li><a href="index-4.html">Disposable Camera</a></li>
+            <li><a href="index-5.html">Windar Concept</a></li>
+            
+            
+          </div>
+            
+        </ul>
+    </nav>
+
+
+  <div class="insights">
+    <img src="pt-pics/pipe-01.png">
+  </div>
+  <div class="functions">
+    <img src="pt-pics/pipe-02.png">
+  </div>
+  <div class="prototype">
+    <img src="pt-pics/pipe-03.png">
+  </div>
+  <div class="ui">
+    <img src="pt-pics/pipe-04.png">
+  </div>
+  <div class="device">
+    <img src="pt-pics/pipe-05.png">
+  </div>
+  <div class="device">
+    <img src="pt-pics/pipe-06.png">
+  </div>
+  
+  <script>
+  const sections = document.querySelectorAll("div");
+
+  const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    sections.forEach(section => {
+      const boxTop = section.getBoundingClientRect().top;
+
+      if (boxTop < triggerBottom) {
+        section.classList.add('visible');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll); // 初始加载时检查
+</script>
+
+</body>
+</html>

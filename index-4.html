@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pj2camera</title>
+  <link rel="stylesheet" href="style-4.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar">
+        <ul>
+          <div class="back">
+            <li>Liyun Design Portfolio</li>
+          </div>
+            
+          <div class="project">
+            <li><a href="index.html">Main Page</a></li>
+            <li><a href="https://liyunxuee.com/">Creative David</a></li>
+            <li><a href="index-5.html">Windar Concept</a></li>
+            <li><a href="index-6.html">Man in Pipe</a></li>
+            
+            
+          </div>
+            
+        </ul>
+    </nav>
+
+
+  <div class="insights">
+    <img src="pt-pics/p2-05.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-06.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-07.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-08.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-09.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-10.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-11.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-12.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-13.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-14.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-15.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-16.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-17.png">
+  </div>
+  <div class="insights">
+    <img src="pt-pics/p2-18.png">
+  </div>
+
+
+  
+  <script>
+  const sections = document.querySelectorAll("div");
+
+  const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    sections.forEach(section => {
+      const boxTop = section.getBoundingClientRect().top;
+
+      if (boxTop < triggerBottom) {
+        section.classList.add('visible');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll); // 初始加载时检查
+</script>
+
+</body>
+</html>
