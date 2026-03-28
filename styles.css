@@ -947,7 +947,7 @@ a {
 
 /* =============================================================
    MOBILE RESPONSIVE STYLES
-   Activates when body has 'is-mobile' class (added by mobile.js)
+   Uses @media queries for reliable viewport-based activation.
    Does NOT affect desktop layout in any way.
    ============================================================= */
 
@@ -960,518 +960,523 @@ a {
   display: none;
 }
 
-/* --- Body state --- */
-body.is-mobile {
-  overflow-x: hidden;
-}
-
-body.is-mobile.mobile-nav-open {
-  overflow: hidden;
-}
-
-/* --- Hide desktop-only elements on mobile --- */
-body.is-mobile .scroll-driver {
-  height: 0 !important;
-  overflow: hidden;
-}
-
-body.is-mobile .animation-stage {
-  display: none !important;
-}
-
-body.is-mobile .nav-links {
-  display: none !important;
-}
-
-/* ===== MOBILE NAVBAR ===== */
-body.is-mobile .navbar {
-  padding: 14px 20px;
-  background: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-body.is-mobile .nav-logo {
-  font-size: 13px;
-  gap: 8px;
-}
-
-body.is-mobile .nav-planet {
-  width: 18px;
-  height: 18px;
-}
-
-/* ===== HAMBURGER BUTTON ===== */
-body.is-mobile .hamburger {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 36px;
-  height: 36px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1001;
-  position: relative;
-}
-
-.hamburger-line {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #fff;
-  border-radius: 1px;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
-}
-
-/* Hamburger -> X animation */
-body.is-mobile .hamburger.active .hamburger-line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-body.is-mobile .hamburger.active .hamburger-line:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
-body.is-mobile .hamburger.active .hamburger-line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-/* ===== MOBILE NAV OVERLAY ===== */
-body.is-mobile .mobile-nav-overlay {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.96);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  z-index: 999;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 52px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
-}
-
-body.is-mobile .mobile-nav-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.mobile-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  color: #fff;
-  font-family: 'Outfit', 'Montserrat', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-body.is-mobile .mobile-nav-overlay.open .mobile-nav-item {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-body.is-mobile .mobile-nav-overlay.open .mobile-nav-item:nth-child(1) {
-  transition-delay: 0.08s;
-}
-
-body.is-mobile .mobile-nav-overlay.open .mobile-nav-item:nth-child(2) {
-  transition-delay: 0.16s;
-}
-
-body.is-mobile .mobile-nav-overlay.open .mobile-nav-item:nth-child(3) {
-  transition-delay: 0.24s;
-}
-
-.mobile-nav-icon {
-  width: 32px;
-  height: 32px;
-  color: #0077C0;
-}
-
-/* ===== MOBILE HERO ===== */
-body.is-mobile .mobile-hero {
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  overflow: hidden;
-}
-
-body.is-mobile #mobileParticles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-body.is-mobile #mobileParticles canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.mobile-hero-text {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  font-family: 'Outfit', 'Montserrat', sans-serif;
-  padding: 0 20px;
-}
-
-.mobile-hero-name {
-  font-size: 56px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 8px;
-  margin-bottom: 20px;
-  line-height: 1;
-}
-
-.mobile-hero-welcome {
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 4px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-.mobile-hero-sub {
-  font-size: 13px;
-  font-weight: 300;
-  color: #777;
-  letter-spacing: 1px;
-}
-
-/* ===== MOBILE PORTFOLIO ===== */
-body.is-mobile .mobile-portfolio {
-  display: block;
-  padding: 56px 20px 40px;
-  background: #000;
-  scroll-margin-top: 60px;
-}
-
-.mobile-portfolio-title {
-  font-family: 'Outfit', 'Montserrat', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: #fff;
-  margin-bottom: 24px;
-  text-transform: uppercase;
-}
-
-.mobile-project-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.mobile-project-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #111;
-  position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.3s ease;
-}
-
-.mobile-project-card:active {
-  transform: scale(0.98);
-}
-
-/* Glossy edge effect on mobile cards */
-.mobile-project-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 16px;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  box-shadow:
-    inset 1px 1px 0 rgba(255, 255, 255, 0.12),
-    inset -1px -1px 0 rgba(255, 255, 255, 0.04);
-}
-
-.mobile-card-image {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-}
-
-.mobile-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.mobile-card-info {
-  padding: 14px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mobile-card-meta {
-  flex: 1;
-  min-width: 0;
-}
-
-.mobile-card-title {
-  font-size: 17px;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 3px;
-  letter-spacing: 0.5px;
-}
-
-.mobile-card-category {
-  font-size: 11px;
-  font-weight: 400;
-  color: #888;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.mobile-card-explore {
-  font-size: 10px;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: 2px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  flex-shrink: 0;
-  opacity: 0.7;
-}
-
-/* ===== MOBILE ABOUT SECTION ===== */
-body.is-mobile .about-section {
-  padding: 56px 20px 48px;
-  gap: 32px;
-  scroll-margin-top: 60px;
-}
-
-body.is-mobile .about-title {
-  font-size: 22px;
-  text-align: center;
-  letter-spacing: 2px;
-}
-
-body.is-mobile .about-top {
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-body.is-mobile .about-photo-wrap {
-  width: 130px;
-  height: 160px;
-}
-
-body.is-mobile .about-name {
-  font-size: 22px;
-  text-align: center;
-}
-
-body.is-mobile .about-name-alt {
-  font-size: 18px;
-}
-
-body.is-mobile .about-intro {
-  font-size: 13px;
-  line-height: 1.8;
-  text-align: center;
-}
-
-body.is-mobile .about-bottom {
-  flex-direction: column;
-  gap: 28px;
-}
-
-body.is-mobile .about-skills {
-  width: 100%;
-}
-
-body.is-mobile .skills-list {
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-}
-
-body.is-mobile .about-section-heading {
-  font-size: 12px;
-  margin-bottom: 14px;
-}
-
-body.is-mobile .about-entry-title {
-  font-size: 13px;
-}
-
-body.is-mobile .about-entry-date {
-  font-size: 11px;
-}
-
-body.is-mobile .about-entry-desc {
-  font-size: 13px;
-}
-
-body.is-mobile .exp-bullets li {
-  font-size: 12px;
-}
-
-body.is-mobile .about-entry {
-  margin-bottom: 20px;
-}
-
-/* ===== MOBILE CONTACT SECTION ===== */
-body.is-mobile .contact-section {
-  position: relative;
-  padding: 70px 20px 56px;
-  min-height: 70vh;
-  overflow: hidden;
-  scroll-margin-top: 60px;
-}
-
-body.is-mobile .mobile-contact-particles {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0.5;
-}
-
-body.is-mobile .mobile-contact-particles canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-body.is-mobile .contact-section > *:not(.mobile-contact-particles) {
-  position: relative;
-  z-index: 1;
-}
-
-body.is-mobile .section-title {
-  font-size: 20px;
-  letter-spacing: 1.5px;
-}
-
-body.is-mobile .contact-text {
-  font-size: 13px;
-}
-
-body.is-mobile .contact-email {
-  font-size: 16px;
-}
-
-body.is-mobile .contact-phone {
-  font-size: 15px;
-}
-
-body.is-mobile .contact-linkedin {
-  font-size: 14px;
-}
-
-/* ===== MOBILE DETAIL PAGE ===== */
-body.is-mobile .detail-navbar {
-  padding: 12px 16px;
-}
-
-body.is-mobile .detail-nav-links {
-  display: none !important;
-}
-
-body.is-mobile .detail-back {
-  gap: 8px;
-}
-
-body.is-mobile .detail-back span {
-  font-size: 12px;
-  letter-spacing: 1px;
-}
-
-body.is-mobile .detail-content {
-  padding: 72px 16px 36px;
-}
-
-body.is-mobile .detail-title {
-  font-size: 26px;
-  margin-bottom: 8px;
-}
-
-body.is-mobile .detail-category {
-  font-size: 11px;
-  margin-bottom: 20px;
-}
-
-body.is-mobile .detail-description {
-  font-size: 14px;
-  line-height: 1.7;
-  margin-bottom: 32px;
-}
-
-body.is-mobile .detail-subtitle {
-  font-size: 20px;
-  margin-top: 32px;
-  margin-bottom: 18px;
-}
-
-body.is-mobile .detail-gallery {
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 32px;
-}
-
-body.is-mobile .detail-hero-image {
-  height: 28vh;
-  margin-bottom: 28px;
-}
-
-body.is-mobile .demo-video-banner {
-  font-size: 24px;
-  padding: 28px 16px;
-}
-
-body.is-mobile .youtube-embed {
-  border-radius: 8px;
-}
+/* ===== ALL MOBILE STYLES INSIDE MEDIA QUERY ===== */
+@media (max-width: 768px) {
+
+  /* --- Body state --- */
+  body {
+    overflow-x: hidden;
+  }
+
+  body.mobile-nav-open {
+    overflow: hidden;
+  }
+
+  /* --- Hide desktop-only elements on mobile --- */
+  .scroll-driver {
+    height: 0 !important;
+    overflow: hidden;
+  }
+
+  .animation-stage {
+    display: none !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  /* ===== MOBILE NAVBAR ===== */
+  .navbar {
+    padding: 14px 20px;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .nav-planet {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ===== HAMBURGER BUTTON ===== */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: relative;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 1px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+  }
+
+  /* Hamburger -> X animation */
+  .hamburger.active .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .hamburger.active .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ===== MOBILE NAV OVERLAY ===== */
+  .mobile-nav-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 52px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+  }
+
+  .mobile-nav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    color: #fff;
+    font-family: 'Outfit', 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .mobile-nav-overlay.open .mobile-nav-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-nav-overlay.open .mobile-nav-item:nth-child(1) {
+    transition-delay: 0.08s;
+  }
+
+  .mobile-nav-overlay.open .mobile-nav-item:nth-child(2) {
+    transition-delay: 0.16s;
+  }
+
+  .mobile-nav-overlay.open .mobile-nav-item:nth-child(3) {
+    transition-delay: 0.24s;
+  }
+
+  .mobile-nav-icon {
+    width: 32px;
+    height: 32px;
+    color: #0077C0;
+  }
+
+  /* ===== MOBILE HERO ===== */
+  .mobile-hero {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    overflow: hidden;
+  }
+
+  #mobileParticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  #mobileParticles canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mobile-hero-text {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-family: 'Outfit', 'Montserrat', sans-serif;
+    padding: 0 20px;
+  }
+
+  .mobile-hero-name {
+    font-size: 56px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  .mobile-hero-welcome {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .mobile-hero-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: #777;
+    letter-spacing: 1px;
+  }
+
+  /* ===== MOBILE PORTFOLIO ===== */
+  .mobile-portfolio {
+    display: block;
+    padding: 56px 20px 40px;
+    background: #000;
+    scroll-margin-top: 60px;
+  }
+
+  .mobile-portfolio-title {
+    font-family: 'Outfit', 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #fff;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .mobile-project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .mobile-project-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #111;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-project-card:active {
+    transform: scale(0.98);
+  }
+
+  /* Glossy edge effect on mobile cards */
+  .mobile-project-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    box-shadow:
+      inset 1px 1px 0 rgba(255, 255, 255, 0.12),
+      inset -1px -1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .mobile-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .mobile-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mobile-card-info {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobile-card-meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .mobile-card-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 3px;
+    letter-spacing: 0.5px;
+  }
+
+  .mobile-card-category {
+    font-size: 11px;
+    font-weight: 400;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .mobile-card-explore {
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  /* ===== MOBILE ABOUT SECTION ===== */
+  .about-section {
+    padding: 56px 20px 48px;
+    gap: 32px;
+    scroll-margin-top: 60px;
+  }
+
+  .about-title {
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  .about-top {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .about-photo-wrap {
+    width: 130px;
+    height: 160px;
+  }
+
+  .about-name {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .about-name-alt {
+    font-size: 18px;
+  }
+
+  .about-intro {
+    font-size: 13px;
+    line-height: 1.8;
+    text-align: center;
+  }
+
+  .about-bottom {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .about-skills {
+    width: 100%;
+  }
+
+  .skills-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
+
+  .about-section-heading {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .about-entry-title {
+    font-size: 13px;
+  }
+
+  .about-entry-date {
+    font-size: 11px;
+  }
+
+  .about-entry-desc {
+    font-size: 13px;
+  }
+
+  .exp-bullets li {
+    font-size: 12px;
+  }
+
+  .about-entry {
+    margin-bottom: 20px;
+  }
+
+  /* ===== MOBILE CONTACT SECTION ===== */
+  .contact-section {
+    position: relative;
+    padding: 70px 20px 56px;
+    min-height: 70vh;
+    overflow: hidden;
+    scroll-margin-top: 60px;
+  }
+
+  .mobile-contact-particles {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .mobile-contact-particles canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .contact-section > *:not(.mobile-contact-particles) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-title {
+    font-size: 20px;
+    letter-spacing: 1.5px;
+  }
+
+  .contact-text {
+    font-size: 13px;
+  }
+
+  .contact-email {
+    font-size: 16px;
+  }
+
+  .contact-phone {
+    font-size: 15px;
+  }
+
+  .contact-linkedin {
+    font-size: 14px;
+  }
+
+  /* ===== MOBILE DETAIL PAGE ===== */
+  .detail-navbar {
+    padding: 12px 16px;
+  }
+
+  .detail-nav-links {
+    display: none !important;
+  }
+
+  .detail-back {
+    gap: 8px;
+  }
+
+  .detail-back span {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .detail-content {
+    padding: 72px 16px 36px;
+  }
+
+  .detail-title {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .detail-category {
+    font-size: 11px;
+    margin-bottom: 20px;
+  }
+
+  .detail-description {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .detail-subtitle {
+    font-size: 20px;
+    margin-top: 32px;
+    margin-bottom: 18px;
+  }
+
+  .detail-gallery {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .detail-hero-image {
+    height: 28vh;
+    margin-bottom: 28px;
+  }
+
+  .demo-video-banner {
+    font-size: 24px;
+    padding: 28px 16px;
+  }
+
+  .youtube-embed {
+    border-radius: 8px;
+  }
+
+} /* end @media (max-width: 768px) */

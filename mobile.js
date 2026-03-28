@@ -2,13 +2,16 @@
 // Mobile-responsive layer for LIYUNXUE Portfolio
 // Loads BEFORE main.js and particles.js
 // Does NOT modify existing desktop code logic — only adds mobile behaviour
+// CSS layout handled by @media queries in styles.css
+// This JS handles: preventing desktop scripts, hamburger menu, particle spheres
 
 (function () {
   'use strict';
 
   // --- MOBILE DETECTION ---
-  if (window.innerWidth > 768) return;
-  document.body.classList.add('is-mobile');
+  // Use matchMedia for reliable detection (matches CSS @media query)
+  var isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (!isMobile) return;
 
   // --- PREVENT DESKTOP SCRIPTS FROM RUNNING ---
   // Rename element IDs so desktop IIFEs in main.js and particles.js
@@ -48,38 +51,7 @@
     }
   }
 
-  // ===== GENERATE PROJECT CARDS =====
-  // Deferred with setTimeout(0) because projectData lives in main.js,
-  // which is loaded AFTER mobile.js.
-  setTimeout(function () {
-    var list = document.getElementById('mobileProjectList');
-    if (!list || typeof projectData === 'undefined') return;
-
-    var html = '';
-    for (var i = 0; i < projectData.length; i++) {
-      var p = projectData[i];
-      html +=
-        '<a href="' + p.link + '" class="mobile-project-card">' +
-          '<div class="mobile-card-image">' +
-            '<img src="' + p.image + '" alt="' + p.title + '" loading="lazy">' +
-          '</div>' +
-          '<div class="mobile-card-info">' +
-            '<div class="mobile-card-meta">' +
-              '<h3 class="mobile-card-title">' + p.title + '</h3>' +
-              '<p class="mobile-card-category">' + p.category + '</p>' +
-            '</div>' +
-            '<span class="mobile-card-explore">' +
-              'EXPLORE ' +
-              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none">' +
-                '<line x1="4" y1="12" x2="20" y2="12" stroke="white" stroke-width="2" stroke-linecap="round"/>' +
-                '<polyline points="14,6 20,12 14,18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>' +
-              '</svg>' +
-            '</span>' +
-          '</div>' +
-        '</a>';
-    }
-    list.innerHTML = html;
-  }, 0);
+  // ===== PROJECT CARDS are hardcoded in index.html (no JS generation needed) =====
 
   // ===== MOBILE PARTICLE SPHERE (non-interactive, auto-rotating) =====
   function createMobileParticles(containerId, particleCount, sphereRadius) {
