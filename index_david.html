@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="stylesheet/style.css">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="js/script.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
+
+	<style>
+		.david-navbar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 9999;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 28px 48px;
+			background: transparent;
+			transition: transform 0.3s ease;
+			font-family: 'Montserrat', sans-serif;
+		}
+		.david-navbar.nav-hidden {
+			transform: translateY(-100%);
+		}
+		.david-navbar .david-back {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-size: 13px;
+			font-weight: 500;
+			letter-spacing: 1.5px;
+			color: #fff;
+			text-decoration: none;
+			transition: opacity 0.3s ease;
+		}
+		.david-navbar .david-back:hover {
+			opacity: 0.7;
+		}
+		.david-navbar .david-back:hover svg {
+			transform: translateX(-4px);
+		}
+		.david-navbar .david-back svg {
+			transition: transform 0.3s ease;
+		}
+		.david-navbar .david-label {
+			font-size: 13px;
+			font-weight: 500;
+			letter-spacing: 1.5px;
+			color: #fff;
+		}
+		.david-nav-links {
+			display: flex;
+			gap: 28px;
+		}
+		.david-nav-link {
+			font-size: 13px;
+			font-weight: 400;
+			letter-spacing: 1.5px;
+			color: #fff;
+			text-decoration: none;
+			position: relative;
+			padding-bottom: 4px;
+			transition: font-weight 0.2s ease;
+		}
+		.david-nav-link::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background: #fff;
+			border-radius: 1px;
+			transition: width 0.3s ease;
+		}
+		.david-nav-link:hover {
+			font-weight: 600;
+		}
+		.david-nav-link:hover::after {
+			width: 100%;
+		}
+	</style>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+
+	<body>
+
+		<nav class="david-navbar" id="davidNavbar">
+			<a href="index.html" class="david-back">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+					<line x1="20" y1="12" x2="4" y2="12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+					<polyline points="10,6 4,12 10,18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+				</svg>
+				<span>BACK</span>
+			</a>
+			<div class="david-nav-links">
+				<a href="project1.html" class="david-nav-link">Project01</a>
+				<a href="project3.html" class="david-nav-link">Project03</a>
+				<a href="project4.html" class="david-nav-link">Project04</a>
+				<a href="project5.html" class="david-nav-link">Project05</a>
+				<a href="project6.html" class="david-nav-link">Project06</a>
+			</div>
+		</nav>
+
+		<div id="title">CREATIVEDAVID</div>
+
+		<div class="intro" id="intro">
+			<div class="line"></div>
+			<div class="hrtop"></div>
+			<div class="layout-container">
+				<!-- 左上角图片框 -->
+				<div class="top-left">
+					<div class="image-container">
+						<img src="images/444.gif" alt="Modernism Image" class="feature-image">
+					</div>
+				</div>
+				
+				<!-- 竖线分隔 -->
+				<div class="vertical-divider"></div>
+				
+				<!-- 右上角标题框 -->
+				<div class="top-right">
+					<h3>WHEN CLASSICAL BEAUTY ENTERS THE MEME AGE</h3>
+				</div>
+				
+				<!-- 横线分隔 -->
+				<div class="horizontal-divider"></div>
+				
+				<!-- 下方内容框 -->
+				<div class="bottom-content">
+					<p class="p1">Our webzine reimagines Michelangelo's David through the lens of contemporary digital culture. No longer confined to marble and museums, this classical symbol of idealized masculinity is reborn in the playful, chaotic, and deeply expressive world of the internet. From vibrant pop aesthetics to ironic memes and glitchy digital art, we explore how David has evolved into a canvas for collective reinterpretation—spanning fan edits, absurd remixes, AI experiments, and viral imagery.</p>
+					
+					<p class="p2">In this project, we gather and celebrate the many ways people have creatively recontextualized David, transforming him from a symbol of Renaissance perfection into a mirror of today's fast-moving visual language. Whether he's striking a TikTok pose, rendered as a 3D low-poly model, or plastered in emoji stickers, each version reflects our culture's shifting values, humor, and obsession with remixability. Our webzine is both a tribute and a critique—an archive of the ways this ancient icon continues to shape and be shaped by modern imagination.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="v1" id="v1">
+			<div class="background-blur" style="background-image: url('images/cartoon.jpg');"></div>
+
+			<div class="hr"></div>
+			<div class="main">
+				<div class="words" id="v1-words">
+					<div class="name">
+						<p>Cartoon Sculpture</p>
+					</div>
+					<div class="hr2"></div>
+					<div class="explain">
+						<div class="leftw">
+							<a href="http://ds.dingwei.cn/byz/details?g=26&id=518">View more</a>
+							<p>Each sculpture student maintains the tradition of sketching David, and in a way the statue of David can be considered part of the academy of fine art. In this way the plaster dolls, David and the gallery are linked together, bringing the public and art school closer together.</p>
+
+						</div>
+						<div class="rightw">
+							<!-- <a href="http://ds.dingwei.cn/byz/details?g=26&id=518">View more</a> -->
+							<p>Featured</p>
+							<div class="jump">
+								<a class="a1" href="#v1">Cartoon Sculpture</a>
+								<a class="a2" href="#v2">Chinese Opera</a>
+								<a class="a3" href="#v3">Flattened David</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="bottom-contentv2">
+						<p>@Yimo Xiao 2019</p>
+					</div>
+				</div>
+				
+				<div class="img">
+					<img id="v1-img"  src="images/cartoon.jpg">
+				</div>
+			</div>
+		</div>
+
+		<div class="v2" id="v2">
+			<div class="mask-overlay"></div>
+
+			<div class="background-blur" style="background-image: url('images/v2.jpg');"></div>
+			<div class="hr"></div>
+			<div class="main">
+				<div class="words">
+					<div class="name">
+						<p>Chinese Opera</p>
+					</div>
+					<div class="hr2"></div>
+					<div class="explain">
+						<div class="leftw">
+							<a href="http://www.wuyalin.net/wuyalin/wap_doc/9945404.html">View more</a>
+							<p>Adopting projection and animation technology, the projector uses the heads of ancient and modern Chinese and foreign celebrities, theater faces and through transformation to form a new vision of David's face structure. The different elements are transformed and fit each other.</p>
+
+						</div>
+						<div class="rightw">
+							 
+							<p>Featured</p>
+							<div class="jump">
+								<a class="a1" href="#v1">Cartoon Sculpture</a>
+								<a class="a2" href="#v2">Chinese Opera</a>
+								<a class="a3" href="#v3">Flattened David</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="bottom-contentv2">
+						<p>@WuyaLin 2015</p>
+					</div>
+				</div>
+				
+				<div class="img">
+					<img src="images/v2.jpg">
+				</div>
+			</div>
+		</div>
+
+		<div class="v3" id="v3">
+			<div class="background-blur" style="background-image: url('images/v3.jpg');"></div>
+			<div class="hr"></div>
+			<div class="main">
+				<div class="words">
+					<div class="name">
+						<p class="squeeze">Flattened David</p>
+					</div>
+					<div class="hr2"></div>
+					<div class="explain">
+						<div class="leftw">
+							<a href="http://ds.dingwei.cn/byz/details?g=26&id=518">View more</a>
+							<p class="flatten-text">Times have changed, but the standard of reference remains the same? Chen Ke thus begins to digitally and technologically forcefully edit and remodel the statue of David. Heflattens the whole image of David, bringing about a strong sense of repression, passivity and even vertigo.</p>
+
+						</div>
+						<div class="rightw">
+							
+							<p>Featured</p>
+							<div class="jump">
+								<a class="a1" href="#v1">Cartoon Sculpture</a>
+								<a class="a2" href="#v2">Chinese Opera</a>
+								<a class="a3" href="#v3">Flattened David</a>
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="bottom-contentv2">
+						<p>@Chen Ke 2006</p>
+					</div>
+				</div>
+				
+				<div class="img">
+					<img src="images/v3.jpg">
+				</div>
+			</div>
+		</div>
+
+
+		<div id="custom-cursor">
+          <img src="images/v3.png" alt="cursor">
+        </div>
+
+		<script>
+			(function() {
+				var nav = document.getElementById('davidNavbar');
+				var lastScrollY = 0;
+				window.addEventListener('scroll', function() {
+					var y = window.scrollY;
+					if (y > lastScrollY && y > 80) {
+						nav.classList.add('nav-hidden');
+					} else {
+						nav.classList.remove('nav-hidden');
+					}
+					lastScrollY = y;
+				});
+			})();
+		</script>
+
+	</body>
+</html>

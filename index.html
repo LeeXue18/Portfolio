@@ -1,44 +1,301 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIYUNXUE - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <div class="left">
-      <div class="top-nav">
-        <p>INTERACTION DESIGN</p>
-        <div class="menu">
-          <a href="index-2.html">MY WORKS</a>
-          <a href="index-3.html">ABOUT ME</a>
-          <p id="contact-link">CONTACT</p>
-          <div id="contact-info">
-            <p>+1 6282332638</p>
-            <p>+86 15221169818</p>
-            <p>liyunxue@cca.edu</p>
+  <!-- Fixed Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <a href="#home" class="nav-logo">
+      <svg class="nav-planet" width="22" height="22" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="28" fill="white"/>
+        <ellipse cx="50" cy="50" rx="48" ry="12" stroke="white" stroke-width="4" fill="none" transform="rotate(-20 50 50)"/>
+        <circle cx="38" cy="42" r="3.5" fill="#000"/>
+        <circle cx="55" cy="37" r="2" fill="#000"/>
+        <circle cx="60" cy="55" r="4" fill="#000" opacity="0.5"/>
+        <circle cx="42" cy="58" r="2.5" fill="#000" opacity="0.4"/>
+        <circle cx="84" cy="36" r="3" fill="white"/>
+        <circle cx="18" cy="60" r="2" fill="white" opacity="0.7"/>
+      </svg>
+      LIYUNXUE
+    </a>
+    <div class="nav-links">
+      <a href="#home" class="nav-link active" data-section="home">HOME</a>
+      <a href="#projects" class="nav-link" data-section="projects">PROJECTS</a>
+      <a href="#about" class="nav-link" data-section="about">ABOUT</a>
+      <a href="#contact" class="nav-link" data-section="contact">CONTACT</a>
+    </div>
+    <!-- Mobile Hamburger Button (hidden on desktop) -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Navigation Overlay (hidden on desktop) -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay">
+    <a href="#" class="mobile-nav-item" data-target="mobilePortfolio">
+      <svg class="mobile-nav-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+      </svg>
+      <span>Portfolio</span>
+    </a>
+    <a href="#" class="mobile-nav-item" data-target="about">
+      <svg class="mobile-nav-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span>About</span>
+    </a>
+    <a href="#" class="mobile-nav-item" data-target="contact">
+      <svg class="mobile-nav-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      <span>Contact</span>
+    </a>
+  </div>
+
+  <!-- Scroll Driver (tall invisible div that drives all animations) -->
+  <div class="scroll-driver" id="scrollDriver"></div>
+
+  <!-- ===== FIXED ANIMATION STAGE ===== -->
+  <div class="animation-stage" id="animationStage">
+
+    <!-- Particle Sphere Background -->
+    <div id="particleCanvas"></div>
+
+    <!-- Hero Content -->
+    <div class="hero-layer" id="heroLayer">
+      <div class="hero-bottom-left fade-in-content">
+        <div class="hero-title">WELCOME TO MY PLANET</div>
+        <div class="hero-subtitle">land of portfolio</div>
+      </div>
+      <div class="hero-bottom-right fade-in-content">
+        <div class="hero-intro-line1">Hello, I'm Lee from California College of the Arts,</div>
+        <div class="hero-intro-line2">
+          a <span class="rotating-text-wrapper">
+            <span class="rotating-text-inner" id="rotatingText">
+              <span class="rotating-word" style="color: #0077C0;">User Interface</span>
+              <span class="rotating-word" style="color: #0077C0;">Experience</span>
+              <span class="rotating-word" style="color: #0077C0;">Installation</span>
+            </span>
+          </span> designer.
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Perspective Block Queue -->
+    <div class="perspective-container" id="perspectiveContainer">
+      <div class="perspective-scene" id="perspectiveScene">
+        <div class="block" data-index="0">
+          <div class="block-inner">
+            <img class="block-bg-img" src="nexoimg/1.png" alt="">
+            <div class="block-blue-overlay"></div>
+            <div class="block-placeholder"></div>
+          </div>
+        </div>
+        <div class="block" data-index="1">
+          <div class="block-inner">
+            <img class="block-bg-img" src="images/david.png" alt="">
+            <div class="block-blue-overlay"></div>
+            <div class="block-placeholder"></div>
+          </div>
+        </div>
+        <div class="block" data-index="2">
+          <div class="block-inner">
+            <img class="block-bg-img" src="go/frontimg.png" alt="">
+            <div class="block-blue-overlay"></div>
+            <div class="block-placeholder"></div>
+          </div>
+        </div>
+        <div class="block" data-index="3">
+          <div class="block-inner">
+            <img class="block-bg-img" src="ar/head.png" alt="">
+            <div class="block-blue-overlay"></div>
+            <div class="block-placeholder"></div>
+          </div>
+        </div>
+        <div class="block" data-index="4">
+          <div class="block-inner">
+            <img class="block-bg-img" src="pj1/pj1front.png" alt="">
+            <div class="block-blue-overlay"></div>
+            <div class="block-placeholder"></div>
+          </div>
+        </div>
+        <div class="block" data-index="5">
+          <div class="block-inner">
+            <img class="block-bg-img" src="pj4/ft.png" alt="">
+            <div class="block-blue-overlay"></div>
+            <div class="block-placeholder"></div>
           </div>
         </div>
       </div>
-      <div class="intro">
-        <h1>
-          Hi<br />
-          I'm Liyun Xue<br />
-          <div class="dynamic-line">
-            <span>A</span>
-            <span id="changing-word">User Interface</span>
-          </div>
-          Designer
-        </h1>
+    </div>
+
+    <!-- Works Intro Overlay -->
+    <div class="works-intro-layer" id="worksIntroLayer">
+      <div class="works-intro-text">
+        <h2 class="works-intro-title">My planet signals</h2>
+        <p class="works-intro-desc">Over the past year, I've worked across a variety of interface design projects, including academic explorations and real-world internship work, primarily focused on UI design. I'm interested in turning user needs into thoughtful, usable experiences — from designing app interfaces to exploring how digital interactions connect with products and physical environments.</p>
       </div>
     </div>
-    <div class="right">
-      <img src="pt-pics/cover4.png" alt="coverimg" />
+
+    <!-- Project Expanded Image (shows when block expands) -->
+    <div class="project-image-expanded" id="projectImageExpanded">
+      <div class="expanded-image-inner">
+        <img id="expandedImage" src="nexoimg/1.png" alt="Project Image" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+      </div>
+    </div>
+
+    <!-- Project Card (frosted glass, slides up from bottom) -->
+    <div class="project-card-float" id="projectCardFloat">
+      <div class="project-card-inner">
+        <h3 class="project-card-title" id="cardTitle">Project 01</h3>
+        <p class="project-card-category" id="cardCategory">UI Design</p>
+        <p class="project-card-desc" id="cardDesc">How is David, as a classical artwork, reinterpreted in contemporary contexts? This webzine continuously collects and showcases secondary artistic creations that use David as a medium.</p>
+        <a href="project1.html" class="project-explore" id="cardLink">
+          <span>EXPLORE</span>
+          <svg class="explore-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <line x1="4" y1="12" x2="20" y2="12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="14,6 20,12 14,18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
-  <script src="script.js"></script>
+
+  <!-- ===== FLOW CONTENT (after animation stage) ===== -->
+  <div class="flow-content" id="flowContent">
+
+    <!-- ===== MOBILE-ONLY SECTIONS (hidden on desktop) ===== -->
+    <!-- Mobile Hero -->
+    <div class="mobile-hero" id="mobileHero">
+      <div class="mobile-hero-particles" id="mobileParticles"></div>
+      <div class="mobile-hero-text">
+        <h1 class="mobile-hero-name">I'M LEE</h1>
+        <h2 class="mobile-hero-welcome">WELCOME TO MY PLANET</h2>
+        <p class="mobile-hero-sub">land of portfolio</p>
+      </div>
+    </div>
+
+    <!-- Mobile Portfolio -->
+    <section class="mobile-portfolio" id="mobilePortfolio">
+      <h2 class="mobile-portfolio-title">Portfolio</h2>
+      <div class="mobile-project-list" id="mobileProjectList">
+        <!-- Cards generated by mobile.js -->
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+      <h2 class="about-title">PLANET EXPLORER</h2>
+
+      <!-- Top: Photo + Name + Intro -->
+      <div class="about-top">
+        <div class="about-photo-wrap">
+          <img class="about-photo-img" src="about/1.jpg" alt="Liyun Xue">
+        </div>
+        <div class="about-name-intro">
+          <h2 class="about-name">Liyun Xue <span class="about-name-alt">| Lee</span></h2>
+          <p class="about-intro">Welcome to my design archive, showcasing projects from my studies in Interaction Design at California College of the Arts — primarily work created after transitioning from urban planning to interaction design. Driven by the constant evolution of digital tools and technology, I've witnessed the design field transform at a rapid pace. As designers, how can we harness technology to serve people while preserving our unique perspective?</p>
+        </div>
+      </div>
+
+      <!-- Bottom: Skills + Education & Experience -->
+      <div class="about-bottom">
+        <div class="about-skills">
+          <h3 class="about-section-heading">Software Skills</h3>
+          <ul class="skills-list">
+            <li>Photoshop</li>
+            <li>Illustrator</li>
+            <li>After Effects</li>
+            <li>Figma</li>
+            <li>Processing</li>
+            <li>Framer</li>
+            <li>Rhino</li>
+            <li>Claude</li>
+          </ul>
+        </div>
+        <div class="about-details">
+          <div class="about-block">
+            <h3 class="about-section-heading">Education</h3>
+            <div class="about-entry">
+              <h4 class="about-entry-title">Northeastern University | Urban Planning</h4>
+              <span class="about-entry-date">2019.09 – 2024.07</span>
+              <p class="about-entry-desc">Relevant Courses: GIS Spatial Analysis, SPSS Data Analysis, Architectural Drawing, Spatial Modeling<br>Honors: Self-Balancing Rail Detection Device (Patent), Rural Design Competition 2nd Prize, Physical Construction Competition 3rd Prize, Second-Class Scholarship</p>
+            </div>
+            <div class="about-entry">
+              <h4 class="about-entry-title">California College of the Arts | Interaction Design</h4>
+              <span class="about-entry-date">2024.09 – Present</span>
+              <p class="about-entry-desc">Completed Courses: UX Design, HTML/CSS/JS Fundamentals, Motion Design (After Effects), Electronics (Arduino), Creative Coding (Processing / Java)</p>
+            </div>
+          </div>
+          <div class="about-block">
+            <h3 class="about-section-heading">Experience</h3>
+            <div class="about-entry">
+              <h4 class="about-entry-title">Shanghai Omni Advertising Company — UI Designer</h4>
+              <span class="about-entry-date">2025.05 – 2025.07</span>
+              <ul class="exp-bullets">
+                <li>Designed UI and visual assets for product advertising and recruitment pages</li>
+                <li>Contributed to ChuhaiGO design team VI guidelines, ensuring consistency across digital materials</li>
+                <li>Supported UI/UX optimization for the ChuhaiGO app and mini program (launched)</li>
+                <li>Designed promotional posters and digital assets to support product and brand communication</li>
+                <li>Collaborated with designers and team members to align visual design outputs</li>
+              </ul>
+            </div>
+            <div class="about-entry">
+              <h4 class="about-entry-title">Quantstruct — UI Designer</h4>
+              <span class="about-entry-date">2025.02 – Present</span>
+              <ul class="exp-bullets">
+                <li>Collaborated with the team to clarify website goals (tech branding + user info access) and distilled core features</li>
+                <li>Used Figma and Framer to build low-fidelity wireframes, optimized navigation logic, and redesigned layout</li>
+                <li>Learned HTML/CSS to support development of static modules</li>
+                <li>Utilized Figma and Framer for web UI design</li>
+              </ul>
+            </div>
+            <div class="about-entry">
+              <h4 class="about-entry-title">Shanghai Tongji Urban Design Institute</h4>
+              <span class="about-entry-date">2023.10 – 2024.01</span>
+              <ul class="exp-bullets">
+                <li>Visited 2 communities and interviewed 200+ residents to identify issues in underground parking</li>
+                <li>Suggested signage improvements and parking zone reorganization, creating a 7-page report</li>
+                <li>Used SketchUp and CAD for layout planning and design documentation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <!-- Mobile-only particle sphere background -->
+      <div class="mobile-contact-particles" id="mobileContactParticles"></div>
+      <h2 class="section-title">Send signal to the planet</h2>
+      <p class="contact-text">Get in touch for collaborations or just to say hello.</p>
+      <a href="mailto:liyunxue@cca.edu" class="contact-email">liyunxue@cca.edu</a>
+      <a href="tel:5107053065" class="contact-phone">5107053065</a>
+      <a href="https://www.linkedin.com/in/liyunxue" class="contact-linkedin" target="_blank" rel="noopener">
+        <svg class="linkedin-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        <span>Liyun Xue</span>
+      </a>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="mobile.js"></script>
+  <script src="main.js"></script>
+  <script src="particles.js"></script>
 </body>
 </html>
