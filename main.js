@@ -2,32 +2,32 @@
 var projectData = [
   {
     title: 'NEXO', category: 'UI Design',
-    desc: 'This is a figma competition project. NEXO consists of a product and an app, the product detects environmental signals to measure if the atmosphere is stressful or joyful, and the app visualizes the data for users.',
+    desc: 'A Figma design competition entry combining a smart environmental sensor with a companion app. NEXO detects ambient signals to assess emotional atmosphere, translating real-time data into intuitive visualizations that help users understand and respond to the dynamics of shared spaces.',
     link: 'project1.html', side: 'left', image: 'nexoimg/1.png'
   },
   {
     title: 'Creative David', category: 'Web Design',
-    desc: 'Every section of text is clickable! This webzine will use the statue of David as a medium to continuously collect derivative artworks inspired by David.',
+    desc: 'An interactive webzine exploring the cultural reinterpretation of Michelangelo\'s David. The platform curates and showcases contemporary derivative artworks that reimagine this classical icon through fully interactive, click-driven navigation.',
     link: 'index_david.html', side: 'right', image: 'images/david.png'
   },
   {
     title: 'Chuhai GO', category: 'UI Design',
-    desc: 'A landed project during my internship. Mainly focuses on gathering overseas information for companies or individuals.',
+    desc: 'A shipped product developed during my internship. Chuhai GO is a cross-border information platform designed to help businesses and individuals access overseas market intelligence, featuring high-fidelity UI and comprehensive brand identity guidelines.',
     link: 'project3.html', side: 'left', image: 'go/frontimg.png'
   },
   {
     title: 'Hidden Pulse', category: 'AR Design',
-    desc: 'An AR project focusing on storytelling of the history and secret buried underneath the land of Hunter\'s Point in South San Francisco',
+    desc: 'An augmented reality experience uncovering the hidden environmental history of Hunter\'s Point, San Francisco \u2014 a former naval shipyard with a complex legacy of contamination, community resilience, and untold stories beneath the surface.',
     link: 'project4.html', side: 'right', image: 'ar/head.png'
   },
   {
     title: 'Analog Photo Storage', category: 'UI Design',
-    desc: 'An app to store photos and emotions for the redesigned disposable camera - a camera that uses AI to help users catch the word and emotion when they are taking photos.',
+    desc: 'A companion app for a reimagined disposable camera experience. Leveraging AI-powered emotion recognition, it captures both photographs and their emotional context, creating a richer, more meaningful visual memory archive.',
     link: 'project5.html', side: 'left', image: 'pj1/pj1front.png'
   },
   {
     title: 'Wind Guide', category: 'UI Design',
-    desc: 'This is an app for users to experience map guiding in a different way, purposing another method of mapping.',
+    desc: 'An experimental navigation app that reimagines the mapping experience. Wind Guide introduces an alternative wayfinding approach, inviting users to discover their surroundings through non-traditional spatial orientation and sensory-driven exploration.',
     link: 'project6.html', side: 'right', image: 'pj4/ft.png'
   }
 ];
@@ -56,14 +56,15 @@ var projectData = [
   var currentProjectIndex = -1;
 
   // ===== SCROLL PHASES (vh) =====
-  var HERO_FADE_START = 1;
-  var HERO_FADE_END = 2;
-  var WORKS_START = 2.5;
-  var WORKS_END = 4.5;
-  var PROJECTS_START = 5;
-  var PROJECT_SCROLL = 3;
+  // Compressed timing for smoother, faster transitions (was 3vh per project, now 1.5)
+  var HERO_FADE_START = 0.8;
+  var HERO_FADE_END = 1.5;
+  var WORKS_START = 1.8;
+  var WORKS_END = 3.2;
+  var PROJECTS_START = 3.5;
+  var PROJECT_SCROLL = 1.5;
   var TOTAL_PROJECTS = 6;
-  var TOTAL_END = PROJECTS_START + TOTAL_PROJECTS * PROJECT_SCROLL; // 23
+  var TOTAL_END = PROJECTS_START + TOTAL_PROJECTS * PROJECT_SCROLL; // 12.5
 
   // ===== ONE-POINT PERSPECTIVE FLOOR CONFIG =====
   // Vanishing point = screen center (perspective-origin 50% 50%)
@@ -74,21 +75,19 @@ var projectData = [
   //   Z = depth (more negative = farther from camera)
   //   TILT = floor tilt angle
   //
-  // Z values are calibrated so that each block arrives at Z ≈ -150
-  // exactly when its project phase starts (with linear zoom).
+  // Z values calibrated: each block arrives at Z ≈ -150 at its project phase start.
+  // With PROJECT_SCROLL=1.5 & TOTAL_ZOOM=800: zoom per project = 100, so z-spacing = 100.
   var BLOCK_TILT = 50;
-  var TOTAL_ZOOM = 1200;
+  var TOTAL_ZOOM = 800;
 
   // Per-block config: y offset (px below center), base z depth, width & height
-  // Front block (0) is at bottom, closest & LARGEST
-  // Back  block (5) is near center, farthest & SMALLEST
   var BLOCK_CONFIGS = [
-    { y: 100, z: -390,  w: 360, h: 234 },   // Project 01 — largest, closest
-    { y: 80,  z: -550,  w: 320, h: 208 },   // Project 02
-    { y: 60,  z: -710,  w: 280, h: 182 },   // Project 03
-    { y: 40,  z: -870,  w: 245, h: 159 },   // Project 04
-    { y: 20,  z: -1030, w: 210, h: 136 },   // Project 05
-    { y: 0,   z: -1190, w: 180, h: 117 }    // Project 06 — smallest, farthest (unchanged)
+    { y: 100, z: -350,  w: 360, h: 234 },   // Project 01 — largest, closest
+    { y: 80,  z: -450,  w: 320, h: 208 },   // Project 02
+    { y: 60,  z: -550,  w: 280, h: 182 },   // Project 03
+    { y: 40,  z: -650,  w: 245, h: 159 },   // Project 04
+    { y: 20,  z: -750,  w: 210, h: 136 },   // Project 05
+    { y: 0,   z: -850,  w: 180, h: 117 }    // Project 06 — smallest, farthest
   ];
 
   // Apply per-block sizes & z-index (Project 01 = front/highest, Project 06 = back/lowest)
@@ -96,6 +95,17 @@ var projectData = [
     blocks[b].style.width = BLOCK_CONFIGS[b].w + 'px';
     blocks[b].style.height = BLOCK_CONFIGS[b].h + 'px';
     blocks[b].style.zIndex = (TOTAL_PROJECTS - b).toString(); // 6,5,4,3,2,1
+  }
+
+  // Make blocks clickable — navigate to project detail page on click
+  for (var c = 0; c < blocks.length; c++) {
+    (function (index) {
+      blocks[index].addEventListener('click', function () {
+        if (projectData[index] && projectData[index].link) {
+          window.location.href = projectData[index].link;
+        }
+      });
+    })(c);
   }
 
   // Scale factor: blocks start at 1/5 size, grow to full with scroll
@@ -195,12 +205,12 @@ var projectData = [
       // Normal queue position
       blocks[i].style.transform = 'translate(-50%, ' + cfg.y + 'px) translateZ(' + z + 'px) rotateX(' + BLOCK_TILT + 'deg) scale(' + blockScale + ')';
 
-      // Opacity: dim during hero, full after, fade when near camera
+      // Opacity: start fully hidden, gradually fade in as user scrolls
       var baseOpacity = 1;
-      if (scrollVH < HERO_FADE_START) {
-        baseOpacity = 0.4; // subtle during hero
+      if (scrollVH < 0.15) {
+        baseOpacity = 0; // completely hidden at the very top
       } else if (scrollVH < HERO_FADE_END) {
-        baseOpacity = lerp(0.4, 1, (scrollVH - HERO_FADE_START) / (HERO_FADE_END - HERO_FADE_START));
+        baseOpacity = easeOutCubic(clamp((scrollVH - 0.15) / (HERO_FADE_END - 0.15), 0, 1));
       }
       if (z > 100) {
         blocks[i].style.opacity = Math.max(0, baseOpacity * (1 - (z - 100) / 300)).toString();
@@ -317,7 +327,7 @@ var projectData = [
       e.preventDefault();
       var s = this.dataset.section;
       if (s === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
-      else if (s === 'projects') window.scrollTo({ top: PROJECTS_START * wh, behavior: 'smooth' });
+      else if (s === 'projects') window.scrollTo({ top: WORKS_START * wh, behavior: 'smooth' });
       else { var el = document.getElementById(s); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
     });
   }
